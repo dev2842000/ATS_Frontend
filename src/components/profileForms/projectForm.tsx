@@ -1,8 +1,9 @@
 import React from 'react'
 
-type Props = {}
+interface Props {}
 
 const ProjectForm:React.FC<Props> = (props) => {
+  console.log(props);
   return (
     <div>ProjectForm</div>
   )

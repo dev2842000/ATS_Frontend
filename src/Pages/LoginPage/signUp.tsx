@@ -50,7 +50,7 @@ const SignUpForm: React.FC<Props> = ({
 
       setMessage(res.message);
       if (res?.email) {
-        login(true);
+        login("true");
         navigate("/");
       }
     } catch (error) {
