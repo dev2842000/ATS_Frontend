@@ -1,10 +1,13 @@
 import React from 'react';
-import './App.css'
+import './App.css';
 import { Outlet } from 'react-router';
+import Layout from './components/Layout/layout';
 
 const App: React.FC = () => {
   return (
-      <Outlet/>
+    <Layout>
+      <Outlet />
+    </Layout>
   );
 };
 

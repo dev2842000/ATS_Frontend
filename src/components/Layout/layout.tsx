@@ -1,20 +1,19 @@
 import React, { ReactNode } from 'react';
 import Header from '../Header/header';
-import Footer from '../Footer/footer';
 import './layout.css';
+import { useAuth } from '../../Utils/AuthContext';
 
 interface ChildrenProps {
   children?: ReactNode;
 }
 
 const Layout: React.FC<ChildrenProps> = ({ children }) => {
+  const { isAuthenticated, logout } = useAuth();
+
   return (
     <>
-      <Header />
-      <div className="wrapper">
-        {children}
-      </div>
-      <Footer />
+      <Header isAuthenticated={isAuthenticated} logout={logout}/>
+      {children}
     </>
   );
 };

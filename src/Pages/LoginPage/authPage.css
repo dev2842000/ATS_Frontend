@@ -1,5 +1,11 @@
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 #main-container{
-    height: 100%;
+    height: 90vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -32,7 +38,7 @@
 
 .login-form input {
     width: 100%;
-    padding: 15px;
+    padding: 12px 30px;
     margin: 10px 0;
     border: none;
     border-radius: 25px;
@@ -40,18 +46,30 @@
     color: #fff;
     font-size: 16px;
 }
-
-/* .login-form button {
+#password-div {
+    margin: 6px 0;
     width: 100%;
-    padding: 15px;
+    display: inline-block;
+    border-radius: 25px;
+    background-color: #333;
+    color: #a9a6a6;
+}
+
+#password-div input {
+    width: 80%;
+    padding: 4px 0px;
     margin: 10px 0;
     border: none;
-    border-radius: 25px;
-    background-color: #1db954;
-    color: #fff;
-    font-size: 16px;
+    outline: none;
+}
+
+#password-div i {
+    font-size: 20px;
+    font-weight: 700;
+    width: 20%;
     cursor: pointer;
-} */
+}
+
 
 .login-form .fb-login {
     background-color: #3b5998;

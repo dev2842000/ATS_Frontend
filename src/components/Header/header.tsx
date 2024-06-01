@@ -1,23 +1,59 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './header.css'; // Assuming you have a CSS file for styling
+import { NavLink } from 'react-router-dom';
+import './header.css';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  isAuthenticated:boolean;
+  logout:() => void;
+}
+const Header: React.FC<HeaderProps> = ({isAuthenticated, logout}) => {
+  
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <Link to="/">ATS Resume</Link>
+        <NavLink 
+          to="/" 
+          end 
+          className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+        >
+          ATS Resume
+        </NavLink>
       </div>
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link to="/" className="nav-link">Home</Link>
+          <NavLink 
+            to="/" 
+            end 
+            className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+          >
+            Home
+          </NavLink>
         </li>
+        {isAuthenticated ?
+          <li className="nav-item">
+            <NavLink 
+              to="/profile" 
+              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+            >
+              Profile
+            </NavLink>
+          </li>:
+          ''
+        }
+        {!isAuthenticated ?
         <li className="nav-item">
-          <Link to="/profile" className="nav-link">Profile</Link>
+          <NavLink 
+            to="/login" 
+            className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+          >
+            Login
+          </NavLink>
         </li>
+        :
         <li className="nav-item">
-          <Link to="/login" className="nav-link">Login</Link>
-        </li>
+        <button onClick={()=> logout()}>Logout</button>
+      </li>
+        }
       </ul>
     </nav>
   );
