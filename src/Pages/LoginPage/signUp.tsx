@@ -1,13 +1,13 @@
 import React from "react";
 import "./authPage.css";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Register } from "../../Api/api";
+import { Register } from "../../ServerApi/api";
 
 interface Props {
   isSignIn: boolean;
-  setIsSignIn: void;
-  showPassword:boolean;
-  setShowPassword:void;
+  setIsSignIn: React.Dispatch<React.SetStateAction<boolean>>;
+  showPassword: boolean;
+  setShowPassword: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface Inputs {
@@ -86,10 +86,11 @@ const SignUpForm: React.FC<Props> = ({ isSignIn, setIsSignIn, showPassword,setSh
                     autoComplete="true"
                     {...register("phone")}
                 />
-              {showPassword ?
-                <i className="text-white cursor-pointer" onClick={() => setShowPassword(false)}>show</i>:
-                <i className="text-white cursor-pointer" onClick={() => setShowPassword(true)}>no show</i>
-              }
+                {showPassword ? (
+                  <i className="text-white cursor-pointer" onClick={() => setShowPassword(false)}>show</i>
+                ) : (
+                  <i className="text-white cursor-pointer" onClick={() => setShowPassword(true)}>no show</i>
+                )}
             </div>
             {errors.password && (
               <span className="text-red-500">Phone Number is required</span>

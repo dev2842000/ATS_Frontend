@@ -1,13 +1,13 @@
 import React from "react";
 import "./authPage.css";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Login } from "../../Api/api";
+import { Login } from "../../ServerApi/api.tsx";
 
 interface Props {
   isSignIn: boolean;
-  setIsSignIn: void;
-  showPassword:boolean;
-  setShowPassword:void;
+  setIsSignIn: React.Dispatch<React.SetStateAction<boolean>>;
+  showPassword: boolean;
+  setShowPassword: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface Inputs {
