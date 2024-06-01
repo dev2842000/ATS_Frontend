@@ -1,0 +1,24 @@
+.homepage {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url('https://miro.medium.com/v2/resize:fit:1200/1*nZUX-sQYZ7XGwfrGmdcp_Q.png');
+    background-position: center;
+    opacity: 0.5;
+  }
+  
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  
