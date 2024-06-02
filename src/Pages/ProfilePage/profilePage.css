@@ -1,65 +1,110 @@
-.homepage {
-    height: 90vh;
+.profile-homepage {
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-image: url("https://i.pinimg.com/originals/bb/d4/07/bbd4074837ddcc377e7a28023dd3ecaf.jpg");
+  display: flex;
+}
+
+.profile-homepage #sidebar {
+  color: white;
+  width: 25%;
+  background-color: rgba(2, 2, 2, 0.496);
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 80px;
+}
+.profile-homepage #sidebar ul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-homepage #sidebar ul li {
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-homepage #sidebar ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.5s ease;
+}
+
+.profile-homepage #sidebar ul li:hover::before {
+  width: 60%;
+}
+
+.profile-homepage #sidebar ul li:hover {
+  font-weight: 800;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 4px 0;
+}
+
+.profile-homepage #form {
+  width: 75%;
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 40px;
+}
+
+@media (max-width: 400px) {
+  #sidebar {
     width: 100%;
-    background-size: cover;
-    background-image: url('https://cdn.vectorstock.com/i/1000x1000/48/40/abstract-tech-design-background-vector-19694840.webp');
-    display: flex;
-}
-
-.homepage #sidebar{
-    color: white;
-    width: 25%;
-    background-color: rgba(79, 79, 79, 0.149);
-    gap: 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 20px;
-    padding-left: 80px;
-}
-.homepage #sidebar ul{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-
-.homepage #sidebar ul li{
-    margin-bottom: 30px;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.homepage #sidebar ul li::before {
-    content: '';
     position: absolute;
     left: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    background-color: #fff; 
-    transition: width 0.5s ease;
+    top: 0;
+    height: 100%;
+    transform: translateX(-100%);
+  }
 }
 
-.homepage #sidebar ul li:hover::before {
-    width: 60%;
-}
+@media (max-width: 800px) {
+  #sidebar {
+    width: 100vw !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    transform: translateX(-100%);
+  }
 
-.homepage #sidebar ul li:hover {
-    font-weight: 800;
-}
+  #sidebar.open {
+    transform: translateX(0);
+  }
 
-
-.homepage #form{
-    width: 75%;
-    background-color: rgba(19, 18, 18, 0.886);
-    gap: 20px;
+  .hamburger {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 40px;
+    position: absolute;
+  }
+  .profile-homepage #form {
+    width: 100%;
+  }
 }

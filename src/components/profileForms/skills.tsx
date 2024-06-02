@@ -1,4 +1,5 @@
 import React from 'react'
+import './profileForm.css'
 
 interface Props {}
 

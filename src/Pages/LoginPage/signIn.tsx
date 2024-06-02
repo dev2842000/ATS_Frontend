@@ -122,7 +122,7 @@ const SignInForm: React.FC<Props> = ({
                 </span>
               )}
 
-              <input type="submit" />
+              <input className="cursor-pointer" type="submit" />
             </form>
             {message && <p className="text-red-500">{message}</p>}{" "}
           </div>

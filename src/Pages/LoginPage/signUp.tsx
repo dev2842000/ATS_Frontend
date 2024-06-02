@@ -151,8 +151,8 @@ const SignUpForm: React.FC<Props> = ({
             {errors.password && (
               <span className="text-red-500">Please enter 8 digit</span>
             )}
-
-            <input type="submit" />
+            
+            <input className="cursor-pointer" type="submit" />
           </form>
           {message && <p className="text-red-500">{message}</p>}{" "}
         </div>
