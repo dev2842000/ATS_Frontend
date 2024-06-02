@@ -42,7 +42,7 @@ const SignInForm: React.FC<Props> = ({
       const res = await Login(data.email, data.password);
 
       setMessage(res.message);
-      if (res?.token) {
+      if (res?.token && res?.user) {
         authLogin(res.token,res.user);
         navigate("/");
       }

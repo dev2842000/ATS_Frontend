@@ -27,7 +27,7 @@ const SignUpForm: React.FC<Props> = ({
 }) => {
   const [message, setMessage] = useState<string | null>(null);
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login:authLogin } = useAuth();
   const {
     register,
     handleSubmit,
@@ -49,8 +49,8 @@ const SignUpForm: React.FC<Props> = ({
       );
 
       setMessage(res.message);
-      if (res?.email) {
-        login("true");
+      if (res?.token && res?.user) {
+        authLogin(res.token,res.user);
         navigate("/");
       }
     } catch (error) {

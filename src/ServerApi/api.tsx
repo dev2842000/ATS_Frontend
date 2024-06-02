@@ -12,13 +12,13 @@ interface LoginResponse {
 }
 
 interface RegisterResponse {
+  token?: string;
   statusCode: number;
   message: string;
-  id?: string;
-  email?: string;
-  phone?: string;
-  firstName?: string;
-  lastName?: string;
+  user?: {
+    id: string;
+    email: string;
+  };
 }
 
 interface UserResponse {
@@ -30,6 +30,13 @@ interface UserResponse {
     phone:string;
   };
 }
+
+interface ErrorResponse {
+  statusCode: number;
+  message: string;
+}
+
+type ApiResponse = UserResponse | ErrorResponse;
 
 const Login = async (
   email: string,
@@ -105,10 +112,10 @@ const Register = async (
   }
 };
 
-const getUser = async ( 
+const getUser = async (
   userId: string,
   token: string,
-): Promise<UserResponse> => {
+): Promise<ApiResponse> => {
   try {
     const response = await fetch(`${apiUrl}getUsers`, {
       method: "POST",
@@ -117,6 +124,7 @@ const getUser = async (
       },
       body: JSON.stringify({ token, userId }),
     });
+
     if (response.status === 401) {
       return {
         statusCode: 401,
@@ -132,12 +140,16 @@ const getUser = async (
       };
     }
 
-    const data: LoginResponse = await response.json();
+    const data: UserResponse = await response.json();
     return data;
   } catch (error) {
     console.error("Error:", error);
-    throw error;
+    return {
+      statusCode: 500,
+      message: "Internal server error",
+    };
   }
 };
+
 
 export { Login, Register, getUser };

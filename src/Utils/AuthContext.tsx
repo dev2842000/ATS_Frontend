@@ -8,7 +8,7 @@ interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
-  login: (token: string, user: object) => {token ,user},
+  login: () => {},
   logout: () => {},
 });
 
