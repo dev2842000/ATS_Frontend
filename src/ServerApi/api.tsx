@@ -21,6 +21,16 @@ interface RegisterResponse {
   lastName?: string;
 }
 
+interface UserResponse {
+  statusCode: number;
+  message: string;
+  user?: {
+    id: string;
+    email: string;
+    phone:string;
+  };
+}
+
 const Login = async (
   email: string,
   password: string
@@ -95,13 +105,17 @@ const Register = async (
   }
 };
 
-const getUser = async (): Promise<RegisterResponse> => {
+const getUser = async ( 
+  userId: string,
+  token: string,
+): Promise<UserResponse> => {
   try {
     const response = await fetch(`${apiUrl}getUsers`, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({ token, userId }),
     });
     if (response.status === 401) {
       return {

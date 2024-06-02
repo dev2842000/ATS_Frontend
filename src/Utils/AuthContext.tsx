@@ -2,13 +2,13 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (token: string) => void;
+  login: (token: string, user: object) => void;
   logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
-  login: (token: string) => {token},
+  login: (token: string, user: object) => {token ,user},
   logout: () => {},
 });
 
@@ -17,8 +17,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return !!localStorage.getItem('token');
   });
 
-  const login = (token: string) => {
-    localStorage.setItem('token', token);
+  const login = (token: string, user: object) => {
+    localStorage.setItem('token', JSON.stringify({token: token, user: user}));
     setIsAuthenticated(true);
   };
 
@@ -28,9 +28,19 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token);
-  }, []);
+    try {
+        const tokenData = localStorage.getItem('token');
+        if (tokenData) {
+            const parsedToken = JSON.parse(tokenData);
+            setIsAuthenticated(!!parsedToken.token);
+        } else {
+            setIsAuthenticated(false);
+        }
+    } catch (error) {
+        console.error("Failed to parse token from localStorage:", error);
+        setIsAuthenticated(false);
+    }
+}, []);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
